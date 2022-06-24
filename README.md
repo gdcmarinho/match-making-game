@@ -8,6 +8,9 @@
 ![Infrastructure image](.github/images/architecture-dark-mode.png#gh-dark-mode-only)
 ![Infrastructure image](.github/images/architecture-light-mode.png#gh-light-mode-only)
 ### Prerequisites
+- Go 1.18 or above
+- Docker
+
 ### Running with Docker
 ### Generate fake users
 
