@@ -17,6 +17,7 @@
 ## How it works
 ### Overview
 ![Overview clean architecture](.github/images/clean-architecture.png)
+
 Clean architecture is a software design pattern popularized by Uncle Bob's that defines a system's responsibilities in a way that allows for a system to be changed without changing its implementation.
 
 The main purpose of matchmaking services architecture is to separate business logic from infrastructure and try to apply best practices to clean architecture development.
