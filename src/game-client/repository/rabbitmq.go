@@ -9,6 +9,7 @@ import (
 var conn *amqp.Connection
 var ch *amqp.Channel
 var q amqp.Queue
+const messageError = "%s: %s"
 
 func init() {
 	conn = startConnection()
@@ -29,7 +30,7 @@ func Publish() {
 		})
 
 	if err != nil {
-		log.Fatalf("%s: %s", "Failed to publish a requisition", err)
+		log.Fatalf(messageError, "Failed to publish a requisition", err)
 	}
 
 	log.Printf(" [x] Sent %s\n", body)
@@ -38,7 +39,7 @@ func Publish() {
 func startConnection() *amqp.Connection {
 	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
 	if err != nil {
-		log.Fatalf("%s: %s", "Failed to connect to RabbitMQ", err)
+		log.Fatalf(messageError, "Failed to connect to RabbitMQ", err)
 	}
 
 	defer conn.Close()
@@ -48,7 +49,7 @@ func startConnection() *amqp.Connection {
 func openChannel(conn *amqp.Connection) *amqp.Channel {
 	ch, err := conn.Channel()
 	if err != nil {
-		log.Fatalf("%s: %s", "Failed to open a channel", err)
+		log.Fatalf(messageError, "Failed to open a channel", err)
 	}
 
 	defer ch.Close()
@@ -65,7 +66,7 @@ func declareQueue(ch *amqp.Channel) amqp.Queue {
 		nil,     // arguments
 	)
 	if err != nil {
-		log.Fatalf("%s: %s", "Failed to declare a queue", err)
+		log.Fatalf(messageError, "Failed to declare a queue", err)
 	}
 
 	return q
